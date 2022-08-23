@@ -1,9 +1,21 @@
 const input = document.getElementById("country")
 
 
-    fetch("./data.json").then((res) => res.json()).then(data => {
-        autocomplete(input, data.countries)
-});
+//     fetch("./data.json").then((res) => res.json()).then(data => {
+//         autocomplete(input, data.countries)
+// });
+fetchCountries();
+
+
+async function fetchCountries() {
+    const requestURL = "./data.json";
+    const request = new Request(requestURL);
+
+    const response = await fetch(request);
+    const data = await response.json();
+
+    autocomplete(input, data.countries);
+}
 
 
 
